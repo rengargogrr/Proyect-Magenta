@@ -1,18 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameManager Instance;
+    public UIManager uiManager;
+    [SerializeField] GameObject deadScreen;
+
+    void Awake()
     {
-        
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GameOver()
     {
-        
+        //Hara lo que tenga que hacer xd
+        uiManager.ShowPanel(deadScreen);
     }
+
 }

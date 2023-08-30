@@ -5,12 +5,14 @@ using UnityEngine.Rendering.Universal;
 
 public class Character : MonoBehaviour
 {
-    private GameManager gameManager;
-    [SerializeField] private int life;
+    public GameManager gameManager;
+    [SerializeField] private float maxLife;
+    [SerializeField] private float life;
 
     void Start()
     {
-        life = 100;
+        maxLife = 100;
+        life = maxLife;
     }
 
     // Update is called once per frame
@@ -22,8 +24,13 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void IsDead()
+    public void TakeDamage(float damage)
     {
-        //No se, ponele que le avisa al game manager xd
+        life -= damage;
+    }
+
+    private void IsDead()
+    {
+        gameManager.GameOver();
     }
 }
